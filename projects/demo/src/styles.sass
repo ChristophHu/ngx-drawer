@@ -1,3 +1,121 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use './app/core/corporate/colors.sass'
+@use './app/core/corporate/theme.sass'
+
 @import "tailwindcss"
+
+*
+    -webkit-user-select: none
+    -khtml-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+
+.scrollbar-hide
+    -ms-overflow-style: none
+    scrollbar-width: none
+    overflow-y: scroll
+
+    &::-webkit-scrollbar
+        display: none
+        width: 0
+        height: 0
+
+body
+    @apply bg-primary text-dark
+
+$drawer-width: 24
+
+drawer
+    position: relative
+    display: flex
+    flex-direction: column
+    flex: none
+    // width: #{$drawer-width}rem
+    // min-width: #{$drawer-width}rem
+    // max-width: #{$drawer-width}rem
+    z-index: 110
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35)
+
+    &.drawer-animations-enabled
+        transition-duration: 300ms
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+        transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width
+
+        .drawer-content
+            transition-duration: 300ms
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+            transition-property: width, max-width, min-width
+
+    &.drawer-mode-over
+        position: absolute
+        top: 0
+        bottom: 0
+
+        &.drawer-fixed
+            position: fixed
+
+    &.drawer-position-left
+
+        &.drawer-mode-side
+            margin-left: -#{$drawer-width}rem
+
+            &.drawer-opened
+                margin-left: 0
+
+        &.drawer-mode-over
+            left: 0
+            transform: translate3d(-100%, 0, 0)
+
+            &.drawer-opened
+                transform: translate3d(0, 0, 0)
+
+        .drawer-content
+            left: 0
+
+    &.drawer-position-right
+
+        &.drawer-mode-side
+            margin-right: -#{$drawer-width}rem
+
+            &.drawer-opened
+                margin-right: 0
+
+        &.drawer-mode-over
+            right: 0
+            transform: translate3d(100%, 0, 0)
+
+            &.drawer-opened
+                transform: translate3d(0, 0, 0)
+
+        .drawer-content
+            right: 0
+
+
+    .drawer-content
+        position: absolute
+        display: flex
+        flex: 1 1 auto
+        top: 0
+        bottom: 0
+        width: 100%
+        height: 100%
+        overflow: hidden
+
+.drawer-overlay
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    z-index: 100
+    opacity: 1
+    background-color: rgba(0, 0, 0, 0.6)
+
+    &.drawer-overlay-fixed
+        position: fixed
+
+    &.drawer-overlay-transparent
+        background-color: transparent
+

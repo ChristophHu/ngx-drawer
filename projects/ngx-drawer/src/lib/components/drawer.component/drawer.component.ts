@@ -67,70 +67,71 @@ export class DrawerComponent {
   //   this._hovered = false
   // }
 
-    ngOnChanges(changes: SimpleChanges): void {
-      if ( 'fixed' in changes ) {
-        this.fixed = coerceBooleanProperty(changes['fixed'].currentValue)
-        this.fixedChanged.next(this.fixed)
+  ngOnChanges(changes: SimpleChanges): void {
+    if ( 'fixed' in changes ) {
+      this.fixed = coerceBooleanProperty(changes['fixed'].currentValue)
+      this.fixedChanged.next(this.fixed)
+    }
+
+    if ( 'mode' in changes ) {
+      const previousMode = changes['mode'].previousValue
+      const currentMode = changes['mode'].currentValue
+
+      // Disable the animations
+      this._disableAnimations()
+
+      // If the mode changes: 'over -> side'
+      if ( previousMode === 'over' && currentMode === 'side' ) {
+        this._hideOverlay()
       }
 
-      if ( 'mode' in changes ) {
-        const previousMode = changes['mode'].previousValue
-        const currentMode = changes['mode'].currentValue
-
-        // Disable the animations
-        this._disableAnimations()
-
-        // If the mode changes: 'over -> side'
-        if ( previousMode === 'over' && currentMode === 'side' ) {
-          this._hideOverlay()
+      // If the mode changes: 'side -> over'
+      if ( previousMode === 'side' && currentMode === 'over' ) {
+        if ( this.opened ) {
+          this._showOverlay()
         }
-
-        // If the mode changes: 'side -> over'
-        if ( previousMode === 'side' && currentMode === 'over' ) {
-          if ( this.opened ) {
-            this._showOverlay()
-          }
-        }
-
-        // Execute the observable
-        this.modeChanged.next(currentMode)
-
-        // Enable the animations after a delay
-        setTimeout(() => {
-          this._enableAnimations()
-        }, 500)
       }
 
-      // Opened
-      if ( 'opened' in changes ) {
-        const open = coerceBooleanProperty(changes['opened'].currentValue)
-        this._toggleOpened(open)
-      }
+      // Execute the observable
+      this.modeChanged.next(currentMode)
 
-      // Position
-      if ( 'position' in changes ) {
-        this.positionChanged.next(this.position);
-      }
-
-      // Transparent overlay
-      if ( 'transparentOverlay' in changes ) {
-        this.transparentOverlay = coerceBooleanProperty(changes['transparentOverlay'].currentValue);
-      }
+      // Enable the animations after a delay
+      setTimeout(() => {
+        this._enableAnimations()
+      }, 500)
     }
 
-    /**
-     * On init
-     */
-    ngOnInit(): void {
-      this._DrawerService.registerComponent(this.name, this)
+    // Opened
+    if ( 'opened' in changes ) {
+      const open = coerceBooleanProperty(changes['opened'].currentValue)
+      this._toggleOpened(open)
     }
 
-    ngOnDestroy(): void {
-      if ( this._animation ) {
-        this._animation.cancel()
-      }
-      this._DrawerService.deregisterComponent(this.name)
+    // Position
+    if ( 'position' in changes ) {
+      this.positionChanged.next(this.position);
     }
+
+    // Transparent overlay
+    if ( 'transparentOverlay' in changes ) {
+      this.transparentOverlay = coerceBooleanProperty(changes['transparentOverlay'].currentValue);
+    }
+  }
+
+  /**
+   * On init
+   */
+  ngOnInit(): void {
+    this._DrawerService.registerComponent(this.name, this)
+  }
+
+  ngOnDestroy(): void {
+    console.log('destroy drawer', this.name)
+    if ( this._animation ) {
+      this._animation.cancel()
+    }
+    this._DrawerService.deregisterComponent(this.name)
+  }
 
   open(): void {
     if ( this.opened ) {
@@ -140,10 +141,13 @@ export class DrawerComponent {
   }
 
   close(): void {
+    console.log('before close drawer', this.name, this.opened)
     if ( !this.opened ) {
       return
     }
+    console.log('close drawer', this.name, this.opened)
     this._toggleOpened(false)
+    console.log('after close drawer', this.name, this.opened)
   }
 
   toggle(): void {

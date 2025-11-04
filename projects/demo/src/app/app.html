@@ -1,25 +1,34 @@
-<button class="w-16 h-16 p-4 text-light" (click)="settingsDrawer.toggle()">
-    <!-- <icons class="w-8 h-8 stroke-1 stroke-current" name="settings"></icons> -->
-</button>
-
-<drawer class="w-screen min-w-screen sm:w-96 sm:min-w-96 z-110" fixed [mode]="'over'" [name]="'settingsDrawer'" [position]="'right'" #settingsDrawer>
-    <div class="flex flex-col w-full overflow-auto bg-primary border-l border-borderline">
-        <header class="h-16 mx-4 flex items-center justify-between content-center border-b border-borderline text-light">
-            <!-- <button class="sm:w-0 w-8 h-8 focus:outline-none cursor-pointer" (click)="settingsDrawer.close()">
-                <icons class="stroke-1 stroke-current" name="arrow-left"></icons>
-            </button> -->
-            <div class="w-8 h-8">
-                <!-- <icons class="stroke-1 stroke-current" name="settings"></icons> -->
-            </div>
-            <span class="ml-3 text-2xl font-semibold">
-                Einstellungen
-            </span>
-            <button class="w-8 h-8 focus:outline-none cursor-pointer" (click)="settingsDrawer.close()">
-                <!-- <icons class="stroke-1 stroke-current" name="x"></icons> -->
-            </button>
-        </header>
-        <div class="mx-4 mt-8">
-            <ng-content></ng-content>
-        </div>
+<div class="absolute flex h-screen w-screen bg-yellow-500 overflow-hidden">
+  <div class="shrink h-full w-full bg-yellow-200">
+    <div class="flex flex-row">
+      <div class="w-96">Test</div>
+      <div class="w-96">Test</div>
+      <div class="w-96">Test</div>
+      <!-- <div class="w-96">Test</div> -->
     </div>
-</drawer>
+  </div>
+
+  <button class="absolute top-0 left-0 w-16 h-16 p-4 text-light z-40 cursor-pointer" (click)="settingsDrawer.toggle()">
+    <icons class="w-8 h-8 stroke-1 stroke-current" name="settings"></icons>
+  </button>
+  
+  <drawer class="grow w-96" [mode]="'over'" [position]="'right'" [name]="'settingsDrawer'" #settingsDrawer>
+    <div class="flex flex-col h-full w-full overflow-auto bg-primary border-l border-borderline">
+      <header class="h-16 mx-4 flex items-center justify-between content-center border-b border-borderline text-light">
+        <div class="w-8 h-8">
+          <icons class="stroke-1 stroke-current" name="settings"></icons>
+        </div>
+        <span class="ml-3 text-2xl font-semibold">
+            Einstellungen
+        </span>
+        <button class="w-8 h-8 focus:outline-none cursor-pointer" (click)="settingsDrawer.close()">
+          <icons class="stroke-1 stroke-current" name="x"></icons>
+        </button>
+      </header>
+      <div class="grow mx-4 mt-8 overflow-auto">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </drawer>
+</div>
+

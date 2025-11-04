@@ -1,9 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { DrawerComponent } from '../../../ngx-drawer/src/public-api';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [
+    DrawerComponent
+  ],
   templateUrl: './app.html',
   styleUrl: './app.sass'
 })

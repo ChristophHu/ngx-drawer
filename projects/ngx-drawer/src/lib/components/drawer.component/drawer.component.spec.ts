@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxDrawer } from './ngx-drawer';
+import { DrawerComponent } from './drawer.component';
 
-describe('NgxDrawer', () => {
-  let component: NgxDrawer;
-  let fixture: ComponentFixture<NgxDrawer>;
+describe('DrawerComponent', () => {
+  let component: DrawerComponent;
+  let fixture: ComponentFixture<DrawerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NgxDrawer]
+      imports: [DrawerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NgxDrawer);
+    fixture = TestBed.createComponent(DrawerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

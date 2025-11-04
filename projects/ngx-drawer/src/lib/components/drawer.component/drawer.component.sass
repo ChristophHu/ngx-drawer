@@ -1,0 +1,127 @@
+$drawer-width: 24
+
+drawer
+    @apply relative flex flex-col w-24
+    // position: relative
+    // display: flex
+    // flex-direction: column
+    flex: 1 1 auto
+    // width: #{$drawer-width}rem
+    // min-width: #{$drawer-width}rem
+    // max-width: #{$drawer-width}rem
+    z-index: 110
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35)
+
+    /* Animations */
+    &.drawer-animations-enabled
+        transition-duration: 300ms
+        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+        transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width
+
+        .drawer-content
+            transition-duration: 300ms
+            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+            transition-property: width, max-width, min-width
+
+    /* Over mode */
+    &.drawer-mode-over
+        @apply absolute top-0 bottom-0
+        // position: absolute
+        // top: 0
+        // bottom: 0
+
+        /* Fixed mode */
+        &.drawer-fixed
+            @apply fixed
+            // position: fixed
+
+    /* Left position */
+    &.drawer-position-left
+
+        /* Side mode */
+        &.drawer-mode-side
+            @apply -ml-24
+            // margin-left: -#{$drawer-width}rem
+
+            &.drawer-opened
+                @apply ml-0
+                // margin-left: 0
+
+        /* Over mode */
+        &.drawer-mode-over
+            @apply left-0
+            // left: 0
+            transform: translate3d(-100%, 0, 0)
+
+            &.drawer-opened
+                transform: translate3d(0, 0, 0)
+
+        /* Content */
+        .drawer-content
+            @apply left-0
+            // left: 0
+
+    /* Right position */
+    &.drawer-position-right
+
+        /* Side mode */
+        &.drawer-mode-side
+            @apply -mr-24
+            // margin-right: -#{$drawer-width}rem
+
+            &.drawer-opened
+                @apply mr-0
+                // margin-right: 0
+
+        /* Over mode */
+        &.drawer-mode-over
+            @apply right-0
+            // right: 0
+            transform: translate3d(100%, 0, 0)
+
+            &.drawer-opened
+                transform: translate3d(0, 0, 0)
+
+
+        /* Content */
+        .drawer-content
+            @apply right-0
+            // right: 0
+
+
+    /* Content */
+    .drawer-content
+        @apply absolute flex h-full w-full top-0 bottom-0 overflow-hidden
+        // position: absolute
+        // display: flex
+        flex: 1 1 auto
+        // top: 0
+        // bottom: 0
+        // width: 100%
+        // height: 100%
+        // overflow: hidden
+        // @apply bg-card
+
+
+/* Overlay */
+.drawer-overlay
+    @apply absolute top-0 right-0 bottom-0 left-0
+    // position: absolute
+    // top: 0
+    // bottom: 0
+    // left: 0
+    // right: 0
+    z-index: 100
+    opacity: 1
+    background-color: rgba(0, 0, 0, 0.6)
+
+    /* Fixed mode */
+    &.drawer-overlay-fixed
+        @apply fixed
+        // position: fixed
+
+    /* Transparent overlay */
+    &.drawer-overlay-transparent
+        @apply bg-transparent
+        // background-color: transparent
+

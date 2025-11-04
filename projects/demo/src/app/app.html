@@ -1,10 +1,16 @@
-<div class="absolute flex h-screen w-screen bg-yellow-500 overflow-hidden">
+<div class="flex flex-row h-12 w-full bg-red-200">
+  <div class="grow p-1">
+    <div class="h-full w-full bg-red-400" (click)="format()"></div>
+  </div>
+  <div class="flex-none w-96 bg-red-300 -mr-96" #settingsDrawer>2</div>
+</div>
+<!-- <div class="absolute flex h-screen w-screen bg-yellow-500 overflow-hidden">
   <div class="shrink h-full w-full bg-yellow-200">
     <div class="flex flex-row">
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
-      <!-- <div class="w-96">Test</div> -->
+
     </div>
   </div>
 
@@ -30,5 +36,5 @@
       </div>
     </div>
   </drawer>
-</div>
+</div> -->
 

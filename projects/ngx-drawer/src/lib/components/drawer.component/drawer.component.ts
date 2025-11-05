@@ -58,15 +58,6 @@ export class DrawerComponent {
     }
   }
 
-  // @HostListener('mouseenter') private _onMouseenter(): void {
-  //   this._enableAnimations()
-  //   this._hovered = true
-  // }
-
-  // @HostListener('mouseleave') private _onMouseleave(): void {
-  //   this._enableAnimations()
-  //   this._hovered = false
-  // }
 
   ngOnChanges(changes: SimpleChanges): void {
     if ( 'fixed' in changes ) {
@@ -127,7 +118,6 @@ export class DrawerComponent {
   }
 
   ngOnDestroy(): void {
-    console.log('destroy drawer', this.name)
     if ( this._animation ) {
       this._animation.cancel()
     }
@@ -142,13 +132,10 @@ export class DrawerComponent {
   }
 
   close(): void {
-    console.log('before close drawer', this.name, this.opened)
     if ( !this.opened ) {
       return
     }
-    console.log('close drawer', this.name, this.opened)
     this._toggleOpened(false)
-    console.log('after close drawer', this.name, this.opened)
   }
 
   toggle(): void {
@@ -197,9 +184,6 @@ export class DrawerComponent {
 
     // Add click listener before animation
     this._overlay.addEventListener('click', (event: Event) => {
-      // console.log('Overlay clicked!')
-      // event.preventDefault()
-      // event.stopPropagation()
       this.close()
       this._cdr.markForCheck()
     })

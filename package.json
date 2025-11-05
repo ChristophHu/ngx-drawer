@@ -1,12 +1,14 @@
 {
-  "name": "ngx-drawer",
-  "version": "0.0.0",
+  "name": "@christophhu/ngx-drawer",
+  "version": "20.3.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "preprocess": "ng build ngx-drawer",
+    "publish": "cd dist/ngx-drawer && npm publish --access public"
   },
   "prettier": {
     "printWidth": 100,

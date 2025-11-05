@@ -1,63 +1,152 @@
-# NgxDrawer
+# Ngx-drawer
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+## Demo
+<p align="center">
+  <a href="https://christophhu.github.io/ngx-drawer"><img src="https://github.com/ChristophHu/ChristophHu/blob/main/assets/img/ngx-drawer.png" width="500" alt="image" /></a>
+</p>
 
-## Code scaffolding
+## Description
+This repository is a demo application built with Angular 20, showcasing the usage of the `ngx-drawer` library. The library provides a collection of drawers that can be used in Angular applications. The drawers are available in different sizes and colors, and can be easily customized to fit the design of your application.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Frameworks and Languages
+<p align="left">
+  <img alt="Static Badge" src="https://img.shields.io/badge/20.3.0-000000?style=for-the-badge&logo=angular&logoColor=white&label=Angular&labelColor=000000"><br>
+  <img alt="Static Badge" src="https://img.shields.io/badge/4.1.16-000000?style=for-the-badge&logo=tailwindcss&logoColor=white&label=TailwindCSS&labelColor=06B6D4&color=000000">
+  <img alt="Static Badge" src="https://img.shields.io/badge/5.9.2-000000?style=for-the-badge&logo=typescript&logoColor=white&label=Typescript&labelColor=007ACC&color=000000">
+</p>
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the library, run:
-
-```bash
-ng build ngx-drawer
-```
-
-This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
-
-### Publishing the Library
-
-Once the project is built, you can publish your library by following these steps:
-
-1. Navigate to the `dist` directory:
-   ```bash
-   cd dist/ngx-drawer
-   ```
-
-2. Run the `npm publish` command to publish your library to the npm registry:
-   ```bash
-   npm publish
-   ```
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Installation
+To run this project, you need to have Node.js installed on your machine. Clone the repository and run the following commands:
 
 ```bash
-ng test
+npm install @christophhu/ngx-drawer
 ```
 
-## Running end-to-end tests
+## Usage
+Import the DrawerComponent in the app.ts.
 
-For end-to-end (e2e) testing, run:
+```typescript
+import { DrawerComponent } from '@christophhu/ngx-drawer';
 
-```bash
-ng e2e
+@NgModule({
+    imports: [
+        DrawerComponent,
+        ...
+    ]
+...
+})
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+```html
+<ngx-drawer
+    [size]="'md'"
+    [color]="'primary'"
+    [fixed]="false"
+    [(isOpen)]="isDrawerOpen">
+</ngx-drawer>
+```
 
-## Additional Resources
+```sass
+drawer
+  position: relative
+  display: flex
+  flex-direction: column
+  flex: none
+  z-index: 110
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .35)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  &.drawer-animations-enabled
+    transition-duration: 300ms
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+    transition-property: visibility, margin-left, margin-right, transform, width, max-width, min-width
+
+    .drawer-content
+      transition-duration: 300ms
+      transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1)
+      transition-property: width, max-width, min-width
+
+  &.drawer-mode-over
+    position: absolute
+    top: 0
+    bottom: 0
+
+    &.drawer-fixed
+      position: fixed
+
+  &.drawer-position-left
+
+    &.drawer-mode-side
+      margin-left: -#{$drawer-width}rem
+
+      &.drawer-opened
+        margin-left: 0
+
+    &.drawer-mode-over
+      left: 0
+      transform: translate3d(-100%, 0, 0)
+
+      &.drawer-opened
+        transform: translate3d(0, 0, 0)
+
+    .drawer-content
+      left: 0
+
+  &.drawer-position-right
+
+    &.drawer-mode-side
+      margin-right: -#{$drawer-width}rem
+
+      &.drawer-opened
+        margin-right: 0
+
+    &.drawer-mode-over
+      right: 0
+      transform: translate3d(100%, 0, 0)
+
+      &.drawer-opened
+        transform: translate3d(0, 0, 0)
+
+    .drawer-content
+      right: 0
+
+  .drawer-content
+    position: absolute
+    display: flex
+    flex: 1 1 auto
+    top: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+.drawer-overlay
+  position: absolute
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 100
+  opacity: 1
+  background-color: rgba(0, 0, 0, 0.6)
+
+  &.drawer-overlay-fixed
+    position: fixed
+
+  &.drawer-overlay-transparent
+    background-color: transparent
+```
+
+The content of the drawer can be customized.
+
+## License
+This project is licensed under the MIT License.
+
+The MIT License (MIT)
+Copyright © 2025 <copyright holders>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

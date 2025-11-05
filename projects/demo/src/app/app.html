@@ -8,12 +8,12 @@
   <div class="flex-none w-96 bg-red-300 -mr-96" #settingsDrawer>2</div>
 </div> -->
 <div class="flex flex-row h-screen w-screen bg-yellow-500 overflow-hidden">
-  <div class="grow shrink h-full bg-yellow-200 relative overflow-auto">
+  <div class="grow shrink h-full bg-yellow-200 relative overflow-hidden">
     <div class="flex flex-row">
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
-
+      <div class="w-96">Test</div>
     </div>
     
     <button class="absolute top-0 left-0 w-16 h-16 p-4 text-light z-40 cursor-pointer" (click)="settingsDrawer.toggle()">
@@ -21,8 +21,8 @@
     </button>
   </div>
   
-  <drawer class="w-96" [mode]="'over'" [position]="'right'" [name]="'settingsDrawer'" #settingsDrawer>
-    <div class="flex flex-col h-full w-full overflow-auto bg-primary border-l border-borderline">
+  <drawer class="w-96" [mode]="'side'" [position]="'right'" [name]="'settingsDrawer'" #settingsDrawer>
+    <div class="flex flex-col h-full w-full bg-primary border-l border-borderline">
       <header class="h-16 mx-4 flex items-center justify-between content-center border-b border-borderline text-light">
         <div class="w-8 h-8">
           <icons class="stroke-1 stroke-current" name="settings"></icons>
@@ -34,7 +34,7 @@
           <icons class="stroke-1 stroke-current" name="x"></icons>
         </button>
       </header>
-      <div class="grow mx-4 mt-8 overflow-auto">
+      <div class="grow mx-4 mt-8 overflow-auto scrollbar-hide">
         <ng-content></ng-content>
       </div>
     </div>

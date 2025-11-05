@@ -1,24 +1,27 @@
-<div class="flex flex-row h-12 w-full bg-red-200">
-  <div class="grow p-1">
+<!-- <div class="flex flex-row h-12 w-full bg-red-200 overflow-hidden">
+  <div class="grow shrink flex flex-row flex-wrap p-1">
     <div class="h-full w-full bg-red-400" (click)="format()"></div>
+    <div class="w-96">Test</div>
+    <div class="w-96">Test</div>
+    <div class="w-96">Test</div>
   </div>
   <div class="flex-none w-96 bg-red-300 -mr-96" #settingsDrawer>2</div>
-</div>
-<!-- <div class="absolute flex h-screen w-screen bg-yellow-500 overflow-hidden">
-  <div class="shrink h-full w-full bg-yellow-200">
+</div> -->
+<div class="flex flex-row h-screen w-screen bg-yellow-500 overflow-hidden">
+  <div class="grow shrink h-full bg-yellow-200 relative overflow-auto">
     <div class="flex flex-row">
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
       <div class="w-96">Test</div>
 
     </div>
+    
+    <button class="absolute top-0 left-0 w-16 h-16 p-4 text-light z-40 cursor-pointer" (click)="settingsDrawer.toggle()">
+      <icons class="w-8 h-8 stroke-1 stroke-current" name="settings"></icons>
+    </button>
   </div>
-
-  <button class="absolute top-0 left-0 w-16 h-16 p-4 text-light z-40 cursor-pointer" (click)="settingsDrawer.toggle()">
-    <icons class="w-8 h-8 stroke-1 stroke-current" name="settings"></icons>
-  </button>
   
-  <drawer class="grow w-96" [mode]="'over'" [position]="'right'" [name]="'settingsDrawer'" #settingsDrawer>
+  <drawer class="w-96" [mode]="'over'" [position]="'right'" [name]="'settingsDrawer'" #settingsDrawer>
     <div class="flex flex-col h-full w-full overflow-auto bg-primary border-l border-borderline">
       <header class="h-16 mx-4 flex items-center justify-between content-center border-b border-borderline text-light">
         <div class="w-8 h-8">
@@ -36,5 +39,4 @@
       </div>
     </div>
   </drawer>
-</div> -->
-
+</div>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output, Renderer2, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output, Renderer2, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { DrawerMode } from '../../models/drawermode.type';
 import { DrawerPosition } from '../../models/drawerposition.type';
 import { BooleanInput, coerceBooleanProperty } from '@angular/cdk/coercion'
@@ -36,7 +36,8 @@ export class DrawerComponent {
     private _elementRef: ElementRef,
     private _renderer2: Renderer2,
     private _DrawerService: DrawerService,
-    private _UtilsService: UtilsService
+    private _UtilsService: UtilsService,
+    private _cdr: ChangeDetectorRef
   ) {}
 
 
@@ -178,6 +179,9 @@ export class DrawerComponent {
       return;
     }
     this._overlay.classList.add('drawer-overlay')
+    
+    // Set z-index to be below the drawer (110) but above everything else
+    this._renderer2.setStyle(this._overlay, 'z-index', '105')
 
     if ( this.fixed ) {
       this._overlay.classList.add('drawer-overlay-fixed')
@@ -187,7 +191,20 @@ export class DrawerComponent {
       this._overlay.classList.add('drawer-overlay-transparent')
     }
 
-    this._renderer2.appendChild(this._elementRef.nativeElement.parentElement, this._overlay)
+    // Insert overlay before the drawer element to ensure proper stacking
+    const parent = this._elementRef.nativeElement.parentElement
+    this._renderer2.insertBefore(parent, this._overlay, this._elementRef.nativeElement)
+
+    // Add click listener before animation
+    this._overlay.addEventListener('click', (event: Event) => {
+      // console.log('Overlay clicked!')
+      // event.preventDefault()
+      // event.stopPropagation()
+      this.close()
+      this._cdr.markForCheck()
+    })
+    
+    console.log('Overlay created with z-index:', this._overlay.style.zIndex)
 
     this._animation = this._overlay.animate([
       { opacity: 0 },
@@ -201,10 +218,6 @@ export class DrawerComponent {
     this._animation.onfinish = () => {
       this._animation = null
     };
-
-    this._overlay.addEventListener('click', () => {
-      this.close()
-    })
   }
 
   private _hideOverlay(): void {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DrawerComponent } from '../../../ngx-drawer/src/public-api';
+import { DrawerComponent } from '@christophhu/ngx-drawer';
 import { IconsComponent } from '@christophhu/ngx-icons';
 
 @Component({

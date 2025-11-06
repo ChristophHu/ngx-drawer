@@ -1,6 +1,6 @@
 <div class="absolute inset-5">
   <div class="relative flex flex-row h-full w-full bg-stone-100 overflow-hidden">
-    <drawer class="w-96" [mode]="'side'" [position]="'left'" [name]="'settingsDrawer'" #settingsDrawer>
+    <ngx-drawer class="w-96" [mode]="'side'" [opened]="true" [position]="'left'" [name]="'settingsDrawer'" #settingsDrawer>
       <div class="flex flex-col h-full w-full bg-primary border-r border-dark">
         <header class="h-16 mx-4 flex items-center justify-between content-center border-b border-borderline text-dark">
           <div class="w-8 h-8">
@@ -17,7 +17,7 @@
           <!-- <ng-content></ng-content> -->
         </div>
       </div>
-    </drawer>
+    </ngx-drawer>
     
     <div class="grow shrink h-full relative overflow-hidden">
       

@@ -6,7 +6,7 @@ import { DrawerService } from '../../services/drawer/drawer.service';
 import { UtilsService } from '../../services/utils/utils.service';
 
 @Component({
-  selector: 'drawer',
+  selector: 'ngx-drawer',
   imports: [],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.sass',

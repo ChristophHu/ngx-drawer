@@ -6,11 +6,11 @@
 </p>
 
 ## Description
-This repository is a demo application built with Angular 20, showcasing the usage of the `ngx-drawer` library. The library provides a collection of drawers that can be used in Angular applications. The drawers are available in different sizes and colors, and can be easily customized to fit the design of your application.
+This repository contains an Angular 20 demo that showcases the `ngx-drawer` library. `ngx-drawer` provides a flexible side drawer for Angular apps, supporting left/right positions and over/side modes. It’s easy to customize—sizes, colors, and behavior—to match your application’s design.
 
 ## Frameworks and Languages
 <p align="left">
-  <img alt="Static Badge" src="https://img.shields.io/badge/20.3.0-000000?style=for-the-badge&logo=angular&logoColor=white&label=Angular&labelColor=000000"><br>
+  <img alt="Static Badge" src="https://img.shields.io/badge/20.3.0-000000?style=for-the-badge&logo=angular&logoColor=white&label=Angular&labelColor=000000">
   <img alt="Static Badge" src="https://img.shields.io/badge/4.1.16-000000?style=for-the-badge&logo=tailwindcss&logoColor=white&label=TailwindCSS&labelColor=06B6D4&color=000000">
   <img alt="Static Badge" src="https://img.shields.io/badge/5.9.2-000000?style=for-the-badge&logo=typescript&logoColor=white&label=Typescript&labelColor=007ACC&color=000000">
 </p>
@@ -39,16 +39,11 @@ import { DrawerComponent } from '@christophhu/ngx-drawer';
 ```
 
 ```html
-<ngx-drawer
-    [size]="'md'"
-    [color]="'primary'"
-    [fixed]="false"
-    [(isOpen)]="isDrawerOpen">
-</ngx-drawer>
+<ngx-drawer [mode]="'side'" [opened]="true" [position]="'left'" [name]="'settingsDrawer'" #settingsDrawer></ngx-drawer>
 ```
 
 ```sass
-drawer
+ngx-drawer
   position: relative
   display: flex
   flex-direction: column
